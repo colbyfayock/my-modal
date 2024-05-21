@@ -22,11 +22,17 @@ export default function Home() {
   useEffect(() => {
     if ( !activeImage ) return;
     dialogRef.current?.showModal();
+    document.body.style.overflow = 'hidden';
+    dialogRef.current?.addEventListener('close', closeDialog);
+    return () => {
+      dialogRef.current?.removeEventListener('close', closeDialog)
+    }
   }, [activeImage]);
 
   function closeDialog() {
     dialogRef.current?.close();
-    setActiveImage(undefined)
+    setActiveImage(undefined);
+    document.body.style.overflow = '';
   }
 
   return (
