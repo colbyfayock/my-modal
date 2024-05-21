@@ -45,15 +45,22 @@ export default function Home() {
         })}
       </ul>
       <dialog ref={dialogRef}>
-        {activeImage && (
-          <Image
-            width={activeImage.width}
-            height={activeImage.height}
-            src={activeImage.path}
-            alt=""
-            unoptimized
-          />
-        )}
+        <div
+          className="max-h-[90vh] max-w-[90vw]"
+          style={{
+            aspectRatio: activeImage && `${activeImage.width} / ${activeImage.height}`
+          }}
+        >
+          {activeImage && (
+            <Image
+              width={activeImage.width}
+              height={activeImage.height}
+              src={activeImage.path}
+              alt=""
+              unoptimized
+            />
+          )}
+        </div>
       </dialog>
     </Container>
   )
