@@ -56,9 +56,9 @@ export default function Home() {
           )
         })}
       </ul>
-      <dialog ref={dialogRef} className="relative overflow-visible">
+      <dialog ref={dialogRef} className="relative overflow-visible backdrop:bg-black/85 bg-transparent">
         <div
-          className="max-h-[90vh] max-w-[90vw]"
+          className="max-h-[90vh] max-w-[90vw] rounded-sm overflow-hidden bg-black"
           style={{
             aspectRatio: activeImage && `${activeImage.width} / ${activeImage.height}`
           }}
