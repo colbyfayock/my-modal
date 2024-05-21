@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Container from '@/components/Container';
 
 import images from '@/data/images.json';
+import { X } from 'lucide-react';
 
 interface Image {
   alt: string;
@@ -22,6 +23,11 @@ export default function Home() {
     if ( !activeImage ) return;
     dialogRef.current?.showModal();
   }, [activeImage]);
+
+  function closeDialog() {
+    dialogRef.current?.close();
+    setActiveImage(undefined)
+  }
 
   return (
     <Container className="mt-12">
@@ -44,7 +50,7 @@ export default function Home() {
           )
         })}
       </ul>
-      <dialog ref={dialogRef}>
+      <dialog ref={dialogRef} className="relative overflow-visible">
         <div
           className="max-h-[90vh] max-w-[90vw]"
           style={{
@@ -61,6 +67,13 @@ export default function Home() {
             />
           )}
         </div>
+        <button
+          className="absolute -top-2 -right-2 z-1 flex items-center justify-center w-5 h-5 bg-zinc-200 rounded-full shadow"
+          onClick={() => closeDialog()}
+        >
+          <X className="w-4 h-4 text-zinc-900" />
+          <span className="sr-only">Close</span>
+        </button>
       </dialog>
     </Container>
   )
