@@ -24,8 +24,10 @@ export default function Home() {
     dialogRef.current?.showModal();
     document.body.style.overflow = 'hidden';
     dialogRef.current?.addEventListener('close', closeDialog);
+    document.body.addEventListener('keydown', handleOnKeyDown);
     return () => {
       dialogRef.current?.removeEventListener('close', closeDialog)
+      document.body.removeEventListener('keydown', handleOnKeyDown);
     }
   }, [activeImage]);
 
@@ -33,6 +35,30 @@ export default function Home() {
     dialogRef.current?.close();
     setActiveImage(undefined);
     document.body.style.overflow = '';
+  }
+
+  function handleOnKeyDown(event: KeyboardEvent) {
+    if ( !images ) return;
+    const currentIndex = images.findIndex(({ path }) => path === activeImage?.path);
+    if ( typeof currentIndex === 'undefined' ) return;
+
+    if ( event.code === 'ArrowRight' ) {
+      if ( currentIndex + 1 < images.length ) {
+        const nextImage = images[currentIndex + 1];
+        setActiveImage(nextImage);
+      } else {
+        const nextImage = images[0];
+        setActiveImage(nextImage);
+      }
+    } else if ( event.code === 'ArrowLeft' ) {
+      if ( currentIndex !== 0 ) {
+        const nextImage = images[currentIndex - 1];
+        setActiveImage(nextImage);
+      } else {
+        const nextImage = images[images.length - 1];
+        setActiveImage(nextImage);
+      }
+    }
   }
 
   return (
