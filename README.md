@@ -1,10 +1,10 @@
 # Modal Dialog in React
 
-Demo for tutorial 
+Demo for tutorial [How to Create a Modal in React with HTML Dialog](https://www.youtube.com/watch?v=FSY2A0vzwko)
 
-📝 Article: 
+📝 Article: https://spacejelly.dev/posts/how-to-create-a-modal-in-react-with-html-dialog
 
-📺 YouTube: 
+📺 YouTube: https://www.youtube.com/watch?v=FSY2A0vzwko
 
 🚀 Demo: https://my-modal.vercel.app/
 
